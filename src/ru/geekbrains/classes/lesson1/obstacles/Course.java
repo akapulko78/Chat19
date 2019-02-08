@@ -1,8 +1,8 @@
-package ru.geekbrains.classes.obstacles;
+package ru.geekbrains.classes.lesson1.obstacles;
 
 
-import ru.geekbrains.classes.Participant;
-import ru.geekbrains.classes.Team;
+import ru.geekbrains.classes.lesson1.Participant;
+import ru.geekbrains.classes.lesson1.Team;
 
 public class Course {
     private Obstacle[] obstacles;

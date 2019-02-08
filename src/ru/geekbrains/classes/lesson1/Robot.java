@@ -1,8 +1,6 @@
-package ru.geekbrains.classes.animals;
+package ru.geekbrains.classes.lesson1;
 
-import ru.geekbrains.classes.Participant;
-
-public abstract class Animal implements Participant {
+public class Robot implements Participant {
 
     private String name;
     private boolean onDistance;
@@ -10,9 +8,8 @@ public abstract class Animal implements Participant {
     private int maxJumpHeight;
     private int maxSwimDistance;
 
-
-    public Animal(String name, int maxRunDistance,
-                  int maxJumpHeight, int maxSwimDistance) {
+    public Robot(String name, int maxRunDistance, int maxJumpHeight,
+                 int maxSwimDistance) {
         this.name = name;
         this.maxRunDistance = maxRunDistance;
         this.maxJumpHeight = maxJumpHeight;
@@ -20,15 +17,9 @@ public abstract class Animal implements Participant {
         this.onDistance = true;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public boolean isOnDistance() {
         return onDistance;
     }
-
-    public abstract void voice();
 
     @Override
     public void run(int distance) {
@@ -65,7 +56,7 @@ public abstract class Animal implements Participant {
 
     @Override
     public String toString() {
-        return name/* + " : " +
-                (isOnDistance() ? "на дистанции" : "сошел с дистанции")*/;
+        return name + " : " +
+                (isOnDistance() ? "на дистанции" : "сошел с дистанции");
     }
 }

@@ -1,4 +1,4 @@
-package ru.geekbrains.classes;
+package ru.geekbrains.classes.lesson1;
 
 public class Team {
     private final String nameOfTeam;
@@ -18,7 +18,7 @@ public class Team {
     public void getResults() {
         System.out.printf("Итоги для команды %s:%n", nameOfTeam);
         for (Participant participant : participants) {
-            System.out.println(participant);
+           System.out.println(participant);
         }
     }
 
