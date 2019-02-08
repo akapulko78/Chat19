@@ -2,7 +2,10 @@ package ru.geekbrains.classes;
 
 import ru.geekbrains.classes.animals.Cat;
 import ru.geekbrains.classes.animals.Dog;
-import ru.geekbrains.classes.obstacles.*;
+import ru.geekbrains.classes.obstacles.Course;
+import ru.geekbrains.classes.obstacles.Cross;
+import ru.geekbrains.classes.obstacles.Wall;
+import ru.geekbrains.classes.obstacles.Water;
 
 public class Application {
 
@@ -13,14 +16,10 @@ public class Application {
                 new Cat("Мурзик", 9, 14, 0),
                 new Robot("Вертер", 50, 50, 50)};
 
-
-        Obstacle[] obstacles = new Obstacle[]{
-                new Cross(5),
+        Course course = new Course(new Cross(5),
                 new Wall(3),
-                new Water(7)
-        };
+                new Water(7));
 
-        Course course = new Course(obstacles);
         Team team = new Team("Team", participants);
         course.doIt(team);
 

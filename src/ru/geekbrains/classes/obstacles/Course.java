@@ -7,7 +7,7 @@ import ru.geekbrains.classes.Team;
 public class Course {
     private Obstacle[] obstacles;
 
-    public Course(Obstacle[] obstacles) {
+    public Course(Obstacle... obstacles) { //переменное число аргументов
         this.obstacles = obstacles;
     }
 
