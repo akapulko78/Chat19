@@ -2,43 +2,28 @@ package ru.geekbrains.classes;
 
 import ru.geekbrains.classes.animals.Cat;
 import ru.geekbrains.classes.animals.Dog;
-import ru.geekbrains.classes.obstacles.Cross;
-import ru.geekbrains.classes.obstacles.Wall;
-import ru.geekbrains.classes.obstacles.Water;
+import ru.geekbrains.classes.obstacles.*;
 
 public class Application {
 
     public static void main(String[] args) {
-        /*Participant[] participants = new Participant[]{
+        Participant[] participants = new Participant[]{
                 new Cat("Барсик", 10, 12, 0),
                 new Dog("Дружок", 20, 5, 15),
                 new Cat("Мурзик", 9, 14, 0),
-                new Robot("Вертер", 50, 50, 50)};*/
-        Team team = new Team("Chikago",new Cat("Барсик", 10, 12, 0),
-                new Dog("Дружок", 20, 5, 15),
-                new Cat("Мурзик", 9, 14, 0),
-                new Cat("Мурзик", 1, 1, 0)
-                );
+                new Robot("Вертер", 50, 50, 50)};
 
-        Course first = new Course(new Cross(1),
-                new Wall(1), new Water(1));
 
-                /*Obstacle[]obstacles = new Obstacle[]{
+        Obstacle[] obstacles = new Obstacle[]{
                 new Cross(5),
                 new Wall(3),
                 new Water(7)
-        };*/
+        };
 
-        /*for (Participant participant : participants) {
-            for (Obstacle obstacle : obstacles) {
-                obstacle.doIt(participant);
-                if (!participant.isOnDistance()) {
-                    break;
-                }
-            }
-        }*/
+        Course course = new Course(obstacles);
+        Team team = new Team("Team", participants);
+        course.doIt(team);
 
-        //team.showResults();
-        team.showInfo();
+        team.getResults();
     }
 }
