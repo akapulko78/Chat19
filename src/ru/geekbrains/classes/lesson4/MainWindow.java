@@ -2,39 +2,47 @@ package ru.geekbrains.classes.lesson4;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 public class MainWindow extends JFrame {
-    private JTextField jTextField;
-    private JList<String> list;
-    private DefaultListModel<String> listModel;
+    private final JTextField jtf;
+    private final JTextArea jta = new JTextArea(10,20);
+    private final JButton sendButton;
 
     public MainWindow() throws HeadlessException {
-        setTitle("Test Window");
+        setTitle("My Chat");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(300, 300, 400, 400);
-        JButton[] jbs = new JButton[5];
-        for (int i = 0; i < 5; i++) {
-            jbs[i] = new JButton("#" + i);
-        }
-        setLayout(new BorderLayout());   // выбор компоновщика элементов
-        add(jbs[0], BorderLayout.EAST);  // добавление кнопки на форму
-        add(jbs[1], BorderLayout.WEST);
-        add(jbs[2], BorderLayout.SOUTH);
+        setLocationRelativeTo(null);
+        setAlwaysOnTop(true);
 
-        jbs[2].addActionListener(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                listModel.add(listModel.size(), jTextField.getText());
-            }
-        });
+        jta.setLineWrap(true);
+        jta.setEditable(false);
 
-        jTextField = new JTextField();
-        add(jTextField, BorderLayout.NORTH);
+        sendButton = new JButton("sent message");
+        add(sendButton, BorderLayout.SOUTH);
+        sendButton.addActionListener(e -> sendMsg());
 
-        listModel = new DefaultListModel<>();
-        list = new JList<>(listModel);
-        add(list, BorderLayout.CENTER);
+
+        JScrollPane jsp = new JScrollPane(jta);
+        add(jsp, BorderLayout.CENTER);
+
+
+        JPanel upperPanel = new JPanel(new BorderLayout());
+        upperPanel.add(sendButton, BorderLayout.EAST);
+        jtf = new JTextField(25);
+        upperPanel.add(jtf, BorderLayout.CENTER);
+        add(upperPanel, BorderLayout.SOUTH);
+
+        Font font = new Font("Arial", Font.BOLD, 18);
+        jta.setFont(font);
+
+        jtf.addActionListener(e -> sendMsg());//отправка сообщение нажатием ENTER
+
         setVisible(true);
+    }
+    public void sendMsg() {
+        jta.append(jtf.getText() + "\n");
+        jtf.setText("");
+        jtf.grabFocus();
     }
 }
