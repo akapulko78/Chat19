@@ -6,7 +6,6 @@ public class Dog extends Animal {
                int maxJumpHeight, int maxSwimDistance) {
         super(name, maxRunDistance, maxJumpHeight, maxSwimDistance);
     }
-
     @Override
     public void voice() {
         System.out.println("Гав");

@@ -10,7 +10,6 @@ public abstract class Animal implements Participant {
     private int maxJumpHeight;
     private int maxSwimDistance;
 
-
     public Animal(String name, int maxRunDistance,
                   int maxJumpHeight, int maxSwimDistance) {
         this.name = name;
