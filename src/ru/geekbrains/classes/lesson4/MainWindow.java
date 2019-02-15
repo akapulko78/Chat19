@@ -3,11 +3,13 @@ package ru.geekbrains.classes.lesson4;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class MainWindow extends JFrame {
     private final JTextField jtf;
-    private final JTextArea jta = new JTextArea(10,20);
-    private final JButton sendButton;
+//    private final JTextArea jta = new JTextArea(10,20);
+    private JButton sendButton;
     private JScrollPane jScrollPane;
     private DefaultListModel<Message> listModel;
     private JList<Message> list;
@@ -36,45 +38,41 @@ public class MainWindow extends JFrame {
         sendButton.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               // submitMessage("user", jtf.getText());
+                submitMessage("user", jtf.getText());
+                jtf.setText(null);
                 jtf.requestFocus();
             }
         });
 
-        //this.addComponentListener
+        this.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent evt) {
+                list.ensureIndexIsVisible(listModel.size() - 1);
+            }
+        });
 
+        panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+        panel.add(sendButton, BorderLayout.EAST);
+        panel.add(jtf, BorderLayout.CENTER);
 
-
-
-
-        setLocationRelativeTo(null);
-        setAlwaysOnTop(true);
-
-        jta.setLineWrap(true);
-        jta.setEditable(false);
-
-
-        add(sendButton, BorderLayout.SOUTH);
-
-
-
-
-        JPanel upperPanel = new JPanel(new BorderLayout());
-        upperPanel.add(sendButton, BorderLayout.EAST);
-
-        upperPanel.add(jtf, BorderLayout.CENTER);
-        add(upperPanel, BorderLayout.SOUTH);
-
-        Font font = new Font("Arial", Font.BOLD, 18);
-        jta.setFont(font);
-
-        jtf.addActionListener(e -> sendMsg());//отправка сообщение нажатием ENTER
+        add(panel, BorderLayout.SOUTH);
 
         setVisible(true);
+
+        jtf.requestFocus();
+
+//        setLocationRelativeTo(null);
+//        setAlwaysOnTop(true);
+//        jta.setLineWrap(true);
+//        jta.setEditable(false);
     }
-    public void sendMsg() {
-        jta.append(jtf.getText() + "\n");
-        jtf.setText("");
-        jtf.grabFocus();
+
+    public void submitMessage(String user, String message) {
+        if (message == null || message.isEmpty()) {
+            return;
+        }
+        listModel.add(listModel.size(), new Message(user, message));
+        list.ensureIndexIsVisible(listModel.size() - 1);
     }
 }
