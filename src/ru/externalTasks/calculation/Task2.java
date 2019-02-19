@@ -6,7 +6,7 @@ import java.util.Date;
 
 //Вывести на экран текущее название дня недели, название месяца и свое имя.
 // Каждое слово должно быть в отдельной строке.
-public class NowDate {
+public class Task2 {
   public static void main(String[] args) {
     Date dateNow = new Date();
 
